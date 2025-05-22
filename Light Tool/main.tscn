@@ -1,0 +1,58 @@
+[gd_scene load_steps=6 format=3 uid="uid://c1t5js086k5hs"]
+
+[ext_resource type="Script" path="res://scripts/Lantern.gd" id="1_qg2e2"]
+[ext_resource type="Script" path="res://addon/Light.gd" id="2_5r4tq"]
+[ext_resource type="Texture2D" uid="uid://dje7ew85m15ey" path="res://textures/Sprite-0001.png" id="3_3kub1"]
+[ext_resource type="Texture2D" uid="uid://bxjhycxmfmhij" path="res://textures/Sprite-0003.png" id="4_od2ww"]
+[ext_resource type="Script" path="res://scripts/Candle.gd" id="5_vopo0"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -1036.0
+offset_top = -753.0
+offset_right = 1303.0
+offset_bottom = 803.0
+color = Color(0, 0.133333, 0.133333, 1)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Lantern" type="Node2D" parent="." node_paths=PackedStringArray("Light")]
+position = Vector2(-500, 0)
+scale = Vector2(9, 9)
+script = ExtResource("1_qg2e2")
+Light = NodePath("LightSimulator")
+
+[node name="LightSimulator" type="Node2D" parent="Lantern"]
+script = ExtResource("2_5r4tq")
+texture = ExtResource("3_3kub1")
+size = 40.0
+color = Color(0, 1, 1, 0.196078)
+numer_of_circles = 6
+proportions = 2.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Lantern"]
+texture = ExtResource("4_od2ww")
+region_enabled = true
+region_rect = Rect2(0, 7, 7, 16)
+
+[node name="Candle" type="Node2D" parent="." node_paths=PackedStringArray("Light")]
+position = Vector2(-154, 7)
+scale = Vector2(9, 9)
+script = ExtResource("5_vopo0")
+Light = NodePath("LightSimulator")
+factor = 0.5
+
+[node name="LightSimulator" type="Node2D" parent="Candle"]
+position = Vector2(-0.555556, -5.11111)
+script = ExtResource("2_5r4tq")
+texture = ExtResource("3_3kub1")
+size = 20.0
+color = Color(0.894118, 0.917647, 0.317647, 0.537255)
+numer_of_circles = 4
+proportions = 2.5
+
+[node name="Sprite2D" type="Sprite2D" parent="Candle"]
+texture = ExtResource("4_od2ww")
+region_enabled = true
+region_rect = Rect2(7, 7, 8, 11)
